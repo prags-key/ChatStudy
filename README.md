@@ -75,68 +75,14 @@ Client-server chat applications are foundational to real-time communication over
 
 ## Program:
 ### client.py
-```
-import socket
-from datetime import datetime
 
-# 1. Create socket
-s = socket.socket()
-
-# 2. Bind socket to IP and Port
-s.bind(('localhost', 6000))
-
-# 3. Server listens for client
-s.listen(5)
-print("Server is waiting for connection...")
-
-# 4. Accept connection
-c, addr = s.accept()
-print("Client Address :", addr)
-
-# 5. Send current date & time
-now = datetime.now()
-c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
-
-# 6. Receive acknowledgement
-ack = c.recv(1024).decode()
-if ack:
-    print(ack)
-
-# 7. Close connection
-c.close()
-
-```
 
 ### server.py
 
-```
-
-import socket
-
-# 1. Create socket
-s = socket.socket()
-
-# 2. Connect to server
-s.connect(('localhost', 6000))
-
-# 3. Print client socket details
-print(s.getsockname())
-
-# 4. Receive date & time from server
-msg = s.recv(1024).decode()
-print(msg)
-
-# 5. Send acknowledgement
-s.send("acknowledgement received from the server".encode())
-
-# 6. Close socket
-s.close()
-
-```
 
 ## Output
 
-<img width="1919" height="1199" alt="Screenshot 2026-02-05 114419" src="https://github.com/user-attachments/assets/9c8a74c9-c6ef-4da0-a827-d5ee2b3c7a5b" />
+
 
 
 
