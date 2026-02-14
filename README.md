@@ -76,13 +76,41 @@ Client-server chat applications are foundational to real-time communication over
 ## Program:
 ### client.py
 
+```
+import socket
+
+s = socket.socket()
+s.connect(('localhost', 6000))  
+s.send(b"Hello from client!")
+data = s.recv(1024).decode()
+print("Server says:", data)
+s.close()
+```
+
 
 ### server.py
+
+```
+import socket
+
+s = socket.socket()
+s.bind(('localhost', 6000))  
+s.listen(1)
+print("Server is listening...")
+
+conn, addr = s.accept()
+print("Connected by", addr)
+data = conn.recv(1024).decode()
+print("Client says:", data)
+conn.send(b"Hello from server!")
+conn.close()
+```
 
 
 ## Output
 
 
+<img width="1580" height="237" alt="image" src="https://github.com/user-attachments/assets/923941e3-5054-4155-9cc5-f1cf0219ad09" />
 
 
 
